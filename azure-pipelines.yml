@@ -29,7 +29,8 @@ stages:
 #        KeyVaultName: 'miyoming-keyvault'
 #        SecretsFilter: 'LocalAdmin'
 #        RunAsPreJob: false
-
+  - job: Installterraform
+    steps:
     - task: TerraformInstaller@1
       displayName: Install Terraform
       inputs:
