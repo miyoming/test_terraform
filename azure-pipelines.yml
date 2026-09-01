@@ -40,7 +40,7 @@ stages:
       inputs:
         provider: 'azurerm'
         command: 'init'
-        backendServiceArm: 'miyoming_vm'
+        backendServiceArm: 'test_terraform'
         backendAzureRmResourceGroupName: '$(strgrg)'
         backendAzureRmStorageAccountName: '$(stgacct)'
         backendAzureRmContainerName: '$(stgcont)'
@@ -57,7 +57,7 @@ stages:
       inputs:
         provider: 'azurerm'
         command: 'plan'
-        environmentServiceNameAzureRM: 'miyoming_vm'
+        environmentServiceNameAzureRM: 'test_terraform'
 
 
 
@@ -77,16 +77,16 @@ stages:
         inputs:
           provider: 'azurerm'
           command: 'init'
-          backendServiceArm: 'miyoming_vm'
+          backendServiceArm: 'test_terraform'
           backendAzureRmResourceGroupName: '$(strgrg)'
           backendAzureRmStorageAccountName: '$(stgacct)'
           backendAzureRmContainerName: '$(stgcont)'
-          backendAzureRmKey: '$(stgkey)'      
+          backendAzureRmKey: '$(stgkey)'
 
       - task: TerraformTask@5
         displayName: Terraform apply
         inputs:
           provider: 'azurerm'
           command: 'apply'
-          environmentServiceNameAzureRM: 'miyoming_vm'
+          environmentServiceNameAzureRM: 'test_terraform'
    
