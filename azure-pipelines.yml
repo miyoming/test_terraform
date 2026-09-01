@@ -10,29 +10,22 @@ pool:
 
 variables:
 - group: 'var'
-- name: 'strgrg'
-  value: 'rg-terraform-demo'
-- name: 'stgacct'
-  value: 'stgmdemo1064155300'
-- name: 'stgcont'
-  value: 'tfstate'
-- name: 'stgkey'
-  value: 'test-terraform.tfstate'
-  
 
 
 stages:
 - stage: tfvalidate
   jobs:
-#  - job: Keyvault
-#    steps:
-#    - task: AzureKeyVault@2
-#      displayName: Fetch keyvault
-#      inputs:
-#        azureSubscription: 'miyoming_vm'
-#        KeyVaultName: 'miyoming-keyvault'
-#        SecretsFilter: 'LocalAdmin'
-#        RunAsPreJob: false
+  - job: Keyvault
+    steps:
+    - task: AzureKeyVault@2
+      displayName: Fetch keyvault
+      inputs:
+        azureSubscription: 'miyoming_vm'
+        KeyVaultName: 'miyoming-keyvault'
+        SecretsFilter: 'LocalAdmin'
+        RunAsPreJob: false
+
+        
   - job: Installterraform
     steps:
     - task: TerraformInstaller@1
