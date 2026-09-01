@@ -9,13 +9,15 @@ pool:
   vmImage: ubuntu-latest
 
 variables:
-  strgrg: 'rg-terraform-demo'
-  stgacct: 'stgmdemo1064155300'
-  stgcont: 'tfstate'
-  stgkey: 'test-terraform.tfstate'
-#  prefix: 'romeo_naga69'
 - group: 'var'
-
+- name: 'strgrg'
+  value: 'rg-terraform-demo'
+- name: 'stgacct'
+  value: 'stgmdemo1064155300'
+- name: 'stgcont'
+  value: 'tfstate'
+- name: 'stgkey'
+  value: 'test-terraform.tfstate'
   
 
 
