@@ -15,15 +15,15 @@ variables:
 stages:
 - stage: tfvalidate
   jobs:
-  - job: Keyvault
-    steps:
-    - task: AzureKeyVault@2
-      displayName: Fetch keyvault
-      inputs:
-        azureSubscription: 'miyoming_vm'
-        KeyVaultName: 'miyoming-keyvault'
-        SecretsFilter: '*'
-        RunAsPreJob: false
+# - job: Keyvault
+#    steps:
+#    - task: AzureKeyVault@2
+#      displayName: Fetch keyvault
+#      inputs:
+#        azureSubscription: 'miyoming_vm'
+#        KeyVaultName: 'miyoming-keyvault'
+#        SecretsFilter: '*'
+#        RunAsPreJob: false
 
         
   - job: Installterraform
