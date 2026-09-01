@@ -20,7 +20,7 @@ stages:
     - task: AzureKeyVault@2
       displayName: Fetch keyvault
       inputs:
-        azureSubscription: 'miyoming_vm'
+        azureSubscription: 'test_terraform'
         KeyVaultName: 'miyoming-keyvault'
         SecretsFilter: '*'
         RunAsPreJob: false
