@@ -13,6 +13,7 @@ variables:
   stgacct: 'stgmdemo1064155300'
   stgcont: 'tfstate'
   stgkey: 'test-terraform.tfstate'
+  prefix: 'romeo_naga69'
 
   
 
@@ -59,6 +60,8 @@ stages:
         provider: 'azurerm'
         command: 'plan'
         environmentServiceNameAzureRM: 'test_terraform'
+      env:
+          TF_VAR_prefix: $(prefix)
 
 
 
@@ -90,4 +93,7 @@ stages:
           provider: 'azurerm'
           command: 'apply'
           environmentServiceNameAzureRM: 'test_terraform'
+
+        env:
+          TF_VAR_prefix: $(prefix)
    
