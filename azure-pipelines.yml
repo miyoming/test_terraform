@@ -56,7 +56,7 @@ stages:
         provider: 'azurerm'
         command: 'plan'
         environmentServiceNameAzureRM: 'test_terraform'
-      env:
+     # env:
           #TF_VAR_prefix: $(prefix)
 
 
