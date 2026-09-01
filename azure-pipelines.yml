@@ -1,0 +1,92 @@
+# Starter pipeline
+# Start with a minimal pipeline that you can customize to build and deploy your code.
+# Add steps that build, run tests, deploy, and more:
+# https://aka.ms/yaml
+
+trigger: none
+
+pool:
+  vmImage: ubuntu-latest
+
+variables:
+  strgrg: 'rg-terraform-demo'
+  stgacct: 'stgmdemo1064155300'
+  stgcont: 'tfstate'
+  stgkey: 'test-terraform.tfstate'
+
+  
+
+
+stages:
+- stage: tfvalidate
+  jobs:
+#  - job: Keyvault
+#    steps:
+#    - task: AzureKeyVault@2
+#      displayName: Fetch keyvault
+#      inputs:
+#        azureSubscription: 'miyoming_vm'
+#        KeyVaultName: 'miyoming-keyvault'
+#        SecretsFilter: 'LocalAdmin'
+#        RunAsPreJob: false
+
+    - task: TerraformInstaller@1
+      displayName: Install Terraform
+      inputs:
+        terraformVersion: '1.15.9'
+
+    - task: TerraformTask@5
+      displayName: Terraform init
+      inputs:
+        provider: 'azurerm'
+        command: 'init'
+        backendServiceArm: 'miyoming_vm'
+        backendAzureRmResourceGroupName: '$(strgrg)'
+        backendAzureRmStorageAccountName: '$(stgacct)'
+        backendAzureRmContainerName: '$(stgcont)'
+        backendAzureRmKey: '$(stgkey)'
+
+    - task: TerraformTask@5
+      displayName: Terraform validate
+      inputs:
+        provider: 'azurerm'
+        command: 'validate'
+
+    - task: TerraformTask@5
+      displayName: Terraform plan
+      inputs:
+        provider: 'azurerm'
+        command: 'plan'
+        environmentServiceNameAzureRM: 'miyoming_vm'
+
+
+
+- stage: tfapply
+  dependsOn: tfvalidate
+  condition: succeeded('tfvalidate')
+  jobs:
+  - job: apply_now
+    steps:
+      - task: TerraformInstaller@1
+        displayName: Terraform init
+        inputs:
+          terraformVersion: '1.15.9'
+
+      - task: TerraformTask@5
+        displayName: Terraform init
+        inputs:
+          provider: 'azurerm'
+          command: 'init'
+          backendServiceArm: 'miyoming_vm'
+          backendAzureRmResourceGroupName: '$(strgrg)'
+          backendAzureRmStorageAccountName: '$(stgacct)'
+          backendAzureRmContainerName: '$(stgcont)'
+          backendAzureRmKey: '$(stgkey)'      
+
+      - task: TerraformTask@5
+        displayName: Terraform apply
+        inputs:
+          provider: 'azurerm'
+          command: 'apply'
+          environmentServiceNameAzureRM: 'miyoming_vm'
+   
