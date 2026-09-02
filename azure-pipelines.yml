@@ -18,8 +18,13 @@ variables:
 stages:
 - stage: tfvalidate
   jobs:
-  - job: Keyvault
+#  - job: Keyvault
+#    steps:
+
+        
+  - job: Installterraform
     steps:
+
     - task: AzureKeyVault@2
       displayName: Fetch keyvault
       inputs:
@@ -28,9 +33,6 @@ stages:
         SecretsFilter: 'rgname'
         RunAsPreJob: true
 
-        
-  - job: Installterraform
-    steps:
     - task: TerraformInstaller@1
       displayName: Install Terraform
       inputs:
