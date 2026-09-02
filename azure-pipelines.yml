@@ -10,6 +10,7 @@ pool:
 
 variables:
 - group: 'var'
+- group: 'backend'
 
 
 
@@ -22,7 +23,7 @@ stages:
     - task: AzureKeyVault@2
       displayName: Fetch keyvault
       inputs:
-        azureSubscription: 'test-terraform'
+        azureSubscription: 'test_terraform'
         KeyVaultName: 'miyoming-keyvault'
         SecretsFilter: '*'
         RunAsPreJob: false
