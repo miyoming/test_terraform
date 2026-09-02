@@ -26,7 +26,7 @@ stages:
         azureSubscription: 'test_terraform'
         KeyVaultName: 'miyoming-keyvault'
         SecretsFilter: 'rgname'
-        RunAsPreJob: false
+        RunAsPreJob: true
 
         
   - job: Installterraform
