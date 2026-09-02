@@ -62,7 +62,7 @@ stages:
         command: 'plan'
         environmentServiceNameAzureRM: 'test_terraform'
       env:
-          TF_VAR_prefix: $(rgname)
+          TF_VAR_prefix: $(kissy)
 
 
 
@@ -107,5 +107,5 @@ stages:
           environmentServiceNameAzureRM: 'test_terraform'
 
         env:
-          TF_VAR_prefix: $(rgname)
+          TF_VAR_prefix: $(kissy)
    
