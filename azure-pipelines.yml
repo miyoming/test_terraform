@@ -9,7 +9,7 @@ pool:
   vmImage: ubuntu-latest
 
 variables:
-#- group: 'var'
+- group: 'var'
 - group: 'backend'
 
 
@@ -60,7 +60,7 @@ stages:
         command: 'plan'
         environmentServiceNameAzureRM: 'test_terraform'
       env:
-          TF_VAR_prefix: $(LocalAdmin)
+          TF_VAR_prefix: $(rgname)
 
 
 
