@@ -91,6 +91,7 @@ stages:
         inputs:
           provider: 'azurerm'
           command: 'apply'
+          commandOptions: '-var="prefix=osang"'
           environmentServiceNameAzureRM: 'test_terraform'
 
  #       env:
