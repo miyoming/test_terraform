@@ -56,8 +56,8 @@ stages:
         provider: 'azurerm'
         command: 'plan'
         environmentServiceNameAzureRM: 'test_terraform'
-     # env:
-          #TF_VAR_prefix: $(prefix)
+      env:
+          TF_VAR_prefix: $(LocalAdmin)
 
 
 
@@ -90,6 +90,6 @@ stages:
           command: 'apply'
           environmentServiceNameAzureRM: 'test_terraform'
 
- #       env:
- #         TF_VAR_prefix: $(prefix)
+        env:
+          TF_VAR_prefix: $(LocalAdmin)
    
