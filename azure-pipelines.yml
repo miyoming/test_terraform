@@ -57,7 +57,6 @@ stages:
       inputs:
         provider: 'azurerm'
         command: 'plan'
-        commandOptions: '-var="prefix=osang"'
         environmentServiceNameAzureRM: 'test_terraform'
      # env:
           #TF_VAR_prefix: $(prefix)
@@ -91,9 +90,10 @@ stages:
         inputs:
           provider: 'azurerm'
           command: 'apply'
-          commandOptions: '-var="prefix=osang"'
           environmentServiceNameAzureRM: 'test_terraform'
 
  #       env:
  #         TF_VAR_prefix: $(prefix)
    
+
+    
