@@ -12,6 +12,8 @@ variables:
 - group: 'var'
 
 
+
+
 stages:
 - stage: tfvalidate
   jobs:
@@ -55,6 +57,7 @@ stages:
       inputs:
         provider: 'azurerm'
         command: 'plan'
+        commandOptions: '-var="prefix=osang"'
         environmentServiceNameAzureRM: 'test_terraform'
      # env:
           #TF_VAR_prefix: $(prefix)
