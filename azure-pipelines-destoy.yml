@@ -9,27 +9,24 @@ pool:
   vmImage: ubuntu-latest
 
 variables:
-  strgrg: 'rg-terraform-demo'
-  stgacct: 'stgmdemo1064155300'
-  stgcont: 'tfstate'
-  stgkey: 'test-terraform.tfstate'
-  
+  - group: backend
+  - group: var
 
   
 
 stages:
 - stage: tfdestroy
   jobs:
-#  - job: destroy
-#    steps:
+  - job: destroy
+    steps:
 
-#    - task: AzureKeyVault@2
-#      displayName: Fetch keyvault
-#      inputs:
-#        azureSubscription: 'miyoming_vm'
-#        KeyVaultName: 'miyoming-keyvault'
-#        SecretsFilter: '*'
-#        RunAsPreJob: false  
+    - task: AzureKeyVault@2
+      displayName: Fetch keyvault
+      inputs:
+        azureSubscription: 'miyoming_vm'
+        KeyVaultName: 'miyoming-keyvault'
+        SecretsFilter: '*'
+        RunAsPreJob: false  
 
     - task: TerraformInstaller@1
       displayName: Install Terraform
@@ -54,21 +51,6 @@ stages:
         provider: 'azurerm'
         command: 'destroy'
         environmentServiceNameAzureRM: 'miyoming_vm'
-#      env:
-#          TF_VAR_admin_password: $(LocalAdmin)
-#          TF_VAR_nsg_name: $(nsg_name)
-#          TF_VAR_nsg_rules: |
-#            [
-#              {
-#                "name": "allow-incoming-traffic",
-#                "priority": 100,
-#                "direction": "Inbound",
-#                "access": "Allow",
-#                "protocol": "Tcp",
-#                "source_port_range": "*",
-#                "destination_port_range": "*",
-#                "source_address_prefix": "*",
-#                "destination_address_prefix": "*"
-#              },
-
-#            ]       
+      env:
+          TF_VAR_nsg_name: $(nsg_name)
+          TF_VAR_nsg_rules: $(nsg_rules)
