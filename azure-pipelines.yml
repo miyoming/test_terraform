@@ -79,13 +79,13 @@ stages:
   - job: apply_now
     steps:
 
-      - task: AzureKeyVault@2
-        displayName: Fetch keyvault
-        inputs:
-          azureSubscription: 'test_terraform'
-          KeyVaultName: 'miyoming-keyvault'
-          SecretsFilter: '*'
-          RunAsPreJob: true
+#      - task: AzureKeyVault@2
+#        displayName: Fetch keyvault
+#        inputs:
+#          azureSubscription: 'test_terraform'
+#          KeyVaultName: 'miyoming-keyvault'
+#          SecretsFilter: '*'
+#          RunAsPreJob: true
 
 
       - task: TerraformInstaller@1
